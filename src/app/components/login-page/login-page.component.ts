@@ -55,4 +55,15 @@ export class LoginPageComponent implements OnInit {
       });
   }
 
+  onClickTwitterLogin(){
+    return this.authService.loginTwitter()
+      .then( (res) => {
+        this.flashMessage.show("Usuario logueado correctamente", {cssClass: 'alert-success', timeout: 4000});
+        this.router.navigate(['/private']);
+      }).catch((err) => {
+        this.flashMessage.show("Usuario y/o contraseña incorrectos", {cssClass: 'alert-danger', timeout: 4000});
+        this.router.navigate(['/login'])
+      });
+  }
+
 }
