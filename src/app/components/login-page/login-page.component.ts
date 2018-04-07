@@ -42,6 +42,17 @@ export class LoginPageComponent implements OnInit {
       this.flashMessage.show("Usuario y/o contraseña incorrectos", {cssClass: 'alert-danger', timeout: 4000});
       this.router.navigate(['/login'])
     });
-}
+  }
+
+  onClickFacebookLogin(){
+    return this.authService.loginFacebook()
+      .then( (res) => {
+        this.flashMessage.show("Usuario logueado correctamente", {cssClass: 'alert-success', timeout: 4000});
+        this.router.navigate(['/private']);
+      }).catch((err) => {
+        this.flashMessage.show("Usuario y/o contraseña incorrectos", {cssClass: 'alert-danger', timeout: 4000});
+        this.router.navigate(['/login'])
+      });
+  }
 
 }
